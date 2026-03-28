@@ -49,7 +49,7 @@ async def send_message(event:AstrMessageEvent ,targets: Dict[str, List[str]], me
             client = event.bot # 得到 client
             payloads = {
                 "message_type": "group",
-                "user_id": str(group_id),
+                "group_id": str(group_id),
                 "message": message
             }
             ret = await client.api.call_action('send_group_msg', **payloads) # 调用 协议端  API
