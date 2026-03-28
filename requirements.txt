@@ -1,0 +1,4 @@
+httpx
+feedparser
+astrbot
+aiohttp

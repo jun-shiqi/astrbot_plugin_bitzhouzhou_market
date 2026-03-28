@@ -1,0 +1,88 @@
+{
+
+  "rss_news_url": {
+    "type": "string",
+    "title": "新闻 RSS URL",
+    "default": "https://rss.odaily.news/rss/post"
+  },
+  "rss_flash_url": {
+    "type": "string",
+    "title": "快讯 RSS URL",
+    "default": "https://rss.odaily.news/rss/newsflash"
+  },
+  "target_private_users": {
+    "type": "string",
+    "title": "QQ好友列表（逗号分隔）",
+    "default": ""
+  },
+  "target_groups": {
+    "type": "string",
+    "title": "QQ群列表（逗号分隔）",
+    "default": ""
+  },
+  "broadcast_enable": {
+    "type": "bool",
+    "title": "启用播报",
+    "default": true
+  },
+  "broadcast_interval_sec": {
+    "type": "int",
+    "title": "播报间隔（秒）",
+    "default": 300
+  },
+  "broadcast_send_market": {
+    "type": "bool",
+    "title": "发送行情分析",
+    "default": true
+  },
+  "broadcast_send_news": {
+    "type": "bool",
+    "title": "发送资讯",
+    "default": true
+  },
+  "broadcast_send_flash": {
+    "type": "bool",
+    "title": "发送快讯",
+    "default": true
+  },
+  "alert_symbols": {
+    "type": "string",
+    "title": "预警交易对（逗号分隔，如 BTC-USDT,ETH-USDT）",
+    "default": "BTC-USDT"
+  },
+  "alert_up_percent": {
+    "type": "float",
+    "title": "上涨预警百分比",
+    "default": 5.0
+  },
+  "alert_down_percent": {
+    "type": "float",
+    "title": "下跌预警百分比",
+    "default": 5.0
+  },
+  "alert_enable": {
+    "type": "bool",
+    "title": "启用价格预警",
+    "default": true
+  },
+  "llm_enabled": {
+    "type": "bool",
+    "title": "启用 LLM 分析",
+    "default": true
+  },
+  "llm_api_key": {
+    "type": "string",
+    "title": "LLM API Key",
+    "default": ""
+  },
+  "llm_base_url": {
+    "type": "string",
+    "title": "LLM API 基础 URL",
+    "default": ""
+  },
+  "llm_model": {
+    "type": "string",
+    "title": "LLM 模型名称",
+    "default": "gpt-4o-mini"
+  }
+}
