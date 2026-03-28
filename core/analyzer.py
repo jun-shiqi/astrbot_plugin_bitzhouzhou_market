@@ -10,6 +10,7 @@ class MarketAnalyzer:
     
     async def analyze_market(self, symbols: List[str]):
         """分析市场数据"""
+        logger.info(f"进入分析")
         try:
             # 获取市场数据
             market_data = await self.okx_service.get_market_data(symbols)
