@@ -147,6 +147,7 @@ class BitZhouZhouMarket(Star):
         
 
         if self.config.get('broadcast_send_market', True):
+            logger.info(f"进入广播")
             alert_configs = self._get_alert_configs()
             symbols = [a['symbol'] for a in alert_configs if a.get('enable')]
             if not symbols:
