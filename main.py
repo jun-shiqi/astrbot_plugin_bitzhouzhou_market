@@ -120,7 +120,7 @@ class BitZhouZhouMarket(Star):
             self.alert_task = asyncio.create_task(self._alert_loop())
         yield event.plain_result(f"定时任务启动成功") # 发送一条纯文本消息
 
-    async def _broadcast_loop(self, interval: int,event:AstrMessageEvent):
+    async def _broadcast_loop(self,interval: int,event:AstrMessageEvent):
         """播报循环"""
         while True:
             try:
