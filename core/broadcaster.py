@@ -3,11 +3,12 @@ from typing import Dict, List
 from astrbot.api.platform import Platform
 from astrbot.api.event import MessageChain
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
+from astrbot.api import logger
 
 logger = logging.getLogger(__name__)
 
 
-async def send_message(self,event:AstrMessageEvent ,targets: Dict[str, List[str]], message: str):
+async def send_message(event:AstrMessageEvent ,targets: Dict[str, List[str]], message: str):
     """
     统一发送消息函数
 
