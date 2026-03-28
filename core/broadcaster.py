@@ -4,7 +4,7 @@ from astrbot.api.platform import Platform
 logger = logging.getLogger(__name__)
 
 
-async def send_message(context, targets: Dict[str, List[str]], message: str):
+async def send_message(self,context, targets: Dict[str, List[str]], message: str):
     """
     统一发送消息函数
 
