@@ -150,6 +150,7 @@ class BitZhouZhouMarket(Star):
             logger.info(f"进入广播")
             alert_configs = self._get_alert_configs()
             symbols = [a['symbol'] for a in alert_configs if a.get('enable')]
+            logger.info(f"进入第二步{symbols}")
             if not symbols:
                 symbols = ['BTC-USDT']
             market_analysis = await self.analyzer.analyze_market(symbols)
