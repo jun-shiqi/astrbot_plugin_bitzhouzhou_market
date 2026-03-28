@@ -2,6 +2,7 @@ import logging
 from typing import Dict, List
 from astrbot.api.platform import Platform
 from astrbot.api.event import MessageChain
+from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 
 logger = logging.getLogger(__name__)
 
