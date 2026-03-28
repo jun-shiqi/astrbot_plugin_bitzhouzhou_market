@@ -52,7 +52,7 @@ async def send_message(event:AstrMessageEvent ,targets: Dict[str, List[str]], me
                 "user_id": str(group_id),
                 "message": message
             }
-            ret = await client.api.call_action('send_msg', **payloads) # 调用 协议端  API
+            ret = await client.api.call_action('send_group_msg', **payloads) # 调用 协议端  API
             logger.info(f"成功向群 {group_id} 发送消息")
         except Exception as e:
             logger.error(f"向群 {group_id} 发送消息失败: {e}")
