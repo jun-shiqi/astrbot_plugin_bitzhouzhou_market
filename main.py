@@ -137,10 +137,10 @@ class BitZhouZhouMarket(Star):
                 logger.error(f"预警任务失败: {e}")
             await asyncio.sleep(60)
 
-    async def _perform_broadcast(self):
+    async def _perform_broadcast(self,event:AstrMessageEvent):
         """执行播报"""
         targets = self._get_targets()
-        event=AstrMessageEvent
+        
 
         if self.config.get('broadcast_send_market', True):
             alert_configs = self._get_alert_configs()
@@ -148,17 +148,17 @@ class BitZhouZhouMarket(Star):
             if not symbols:
                 symbols = ['BTC-USDT']
             market_analysis = await self.analyzer.analyze_market(symbols)
-            await self.my_send_massage(event,market_analysis)
+            await send_message(self,event,targets, market_analysis)
 
         if self.config.get('broadcast_send_news', True):
             news = await self.rss_service.get_news()
             news_summary = await self.analyzer.generate_news_summary(news)
-            await self.my_send_massage(event,news_summary)
+            await self.my_send_massage(self,event,targets, news_summary)
 
         if self.config.get('broadcast_send_flash', True):
             flash = await self.rss_service.get_flash()
             flash_summary = await self.analyzer.generate_flash_summary(flash)
-            await self.my_send_massage(event,flash_summary)
+            await self.my_send_massage(self,event,targets,flash_summary)
 
     async def terminate(self):
         """插件被卸载/停用时调用"""
@@ -169,7 +169,4 @@ class BitZhouZhouMarket(Star):
             self.alert_task.cancel()
         logger.info("比特周周加密市场分析插件已终止")
 
-    async def my_send_massage(self,event:AstrMessageEvent,bot_massage):
-        umo = event.unified_msg_origin
-        message_chain = MessageChain().message(bot_massage)
-        await self.context.send_message(event.unified_msg_origin, message_chain)
+   
