@@ -153,7 +153,7 @@ class BitZhouZhouMarket(Star):
             logger.info(f"进入第二步{symbols}")
             if not symbols:
                 symbols = ['BTC-USDT']
-            await send_message(self,event,targets, "h")
+            send_message(self,event,targets, "h")
             market_analysis = await self.analyzer.analyze_market(symbols)
             
 
