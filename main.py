@@ -31,7 +31,7 @@ from .core.broadcaster import send_message
 )
 class BitZhouZhouMarket(Star):
 
-    def __init__(self, context: Context, config: dict = None):
+    def __init__(self,context: Context,event:AstrMessageEvent, config: dict = None):
         super().__init__(context)
         self.config = config or {}
         self.okx_service = None
@@ -43,7 +43,7 @@ class BitZhouZhouMarket(Star):
         self.alert_task = None
 
         self._init_services()
-        self._start_tasks()
+        self._start_tasks(event)
 
         logger.info("比特周周加密市场分析插件已加载")
 
