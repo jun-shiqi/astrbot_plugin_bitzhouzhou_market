@@ -5,6 +5,7 @@
 import asyncio
 from astrbot.api.star import Star, Context, register
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
+from astrbot.api.event import MessageChain
 
 
 try:
@@ -147,17 +148,17 @@ class BitZhouZhouMarket(Star):
             if not symbols:
                 symbols = ['BTC-USDT']
             market_analysis = await self.analyzer.analyze_market(symbols)
-            await send_message(self,event,targets, market_analysis)
+            await self.my_send_massage(self,event,market_analysis)
 
         if self.config.get('broadcast_send_news', True):
             news = await self.rss_service.get_news()
             news_summary = await self.analyzer.generate_news_summary(news)
-            await send_message(self,event,targets, news_summary)
+            await self.my_send_massage(self,event,news_summary)
 
         if self.config.get('broadcast_send_flash', True):
             flash = await self.rss_service.get_flash()
             flash_summary = await self.analyzer.generate_flash_summary(flash)
-            await send_message(self,event,targets,flash_summary)
+            await self.my_send_massage(self,event,flash_summary)
 
     async def terminate(self):
         """插件被卸载/停用时调用"""
@@ -167,3 +168,8 @@ class BitZhouZhouMarket(Star):
         if self.alert_task:
             self.alert_task.cancel()
         logger.info("比特周周加密市场分析插件已终止")
+
+    async def my_send_massage(self,event:AstrMessageEvent,bot_massage):
+        umo = event.unified_msg_origin
+        message_chain = MessageChain().message(bot_massage)
+        await self.context.send_message(event.unified_msg_origin, message_chain)
