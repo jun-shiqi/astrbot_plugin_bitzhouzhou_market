@@ -17,6 +17,7 @@ async def send_message(self,event:AstrMessageEvent ,targets: Dict[str, List[str]
         message: 要发送的消息内容
     """
     # 获取所有已注册的平台适配器
+    logger.info(f"进入发消息函数")
     platforms = self.context.platform_manager.get_insts()
     
     
