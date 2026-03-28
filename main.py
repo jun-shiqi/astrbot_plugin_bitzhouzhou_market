@@ -41,10 +41,9 @@ class BitZhouZhouMarket(Star):
         self.alert_system = None
         self.broadcast_task = None
         self.alert_task = None
-        event=AstrMessageEvent()
 
         self._init_services()
-        self._start_tasks(event)
+        
 
         logger.info("比特周周加密市场分析插件已加载")
 
@@ -108,6 +107,8 @@ class BitZhouZhouMarket(Star):
 
         # 初始化预警系统
         self.alert_system = PriceAlertSystem(self.okx_service, send_message)
+        
+    @filter.command("启动定时任务")
 
     def _start_tasks(self,event:AstrMessageEvent):
         """启动定时任务"""
@@ -118,6 +119,7 @@ class BitZhouZhouMarket(Star):
         alert_configs = self._get_alert_configs()
         if alert_configs:
             self.alert_task = asyncio.create_task(self._alert_loop())
+        yield event.plain_result(f"定时任务启动成功") # 发送一条纯文本消息
 
     async def _broadcast_loop(self, interval: int,event:AstrMessageEvent):
         """播报循环"""
