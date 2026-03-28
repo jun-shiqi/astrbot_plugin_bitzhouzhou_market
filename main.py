@@ -118,11 +118,11 @@ class BitZhouZhouMarket(Star):
         if alert_configs:
             self.alert_task = asyncio.create_task(self._alert_loop())
 
-    async def _broadcast_loop(self, interval: int):
+    async def _broadcast_loop(self, interval: int,event:AstrMessageEvent):
         """播报循环"""
         while True:
             try:
-                await self._perform_broadcast()
+                await self._perform_broadcast(event)
             except Exception as e:
                 logger.error(f"播报任务失败: {e}")
             await asyncio.sleep(interval)
