@@ -140,7 +140,9 @@ class BitZhouZhouMarket(Star):
             await asyncio.sleep(60)
 
     async def _perform_broadcast(self,event:AstrMessageEvent):
+         
         """执行播报"""
+        logger.info(f"开始执行播报")
         targets = self._get_targets()
         
 
