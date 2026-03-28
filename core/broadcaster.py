@@ -19,7 +19,7 @@ async def send_message(event:AstrMessageEvent ,targets: Dict[str, List[str]], me
     """
     # 获取所有已注册的平台适配器
     logger.info(f"进入发消息函数")
-    platforms = self.context.platform_manager.get_insts()
+   
     
     
     # 发送私聊消息
