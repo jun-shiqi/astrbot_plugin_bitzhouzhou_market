@@ -109,8 +109,7 @@ class BitZhouZhouMarket(Star):
         self.alert_system = PriceAlertSystem(self.okx_service, send_message)
         
     @filter.command("启动定时任务")
-
-    def _start_tasks(self,event:AstrMessageEvent):
+    async def _start_tasks(self,event:AstrMessageEvent):
         """启动定时任务"""
         if self.config.get('broadcast_enable', True):
             interval = self.config.get('broadcast_interval_sec', 300)
