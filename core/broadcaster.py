@@ -20,8 +20,6 @@ async def send_message(self,event:AstrMessageEvent ,targets: Dict[str, List[str]
     platforms = self.context.platform_manager.get_insts()
     
     for platform in platforms:
-        adapter = platform.platform_instance
-
         # 发送私聊消息
         private_users = targets.get("private_users", [])
         for user_id in private_users:
