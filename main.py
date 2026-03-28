@@ -140,7 +140,7 @@ class BitZhouZhouMarket(Star):
     async def _perform_broadcast(self):
         """执行播报"""
         targets = self._get_targets()
-        event=AstrMessageEvent.event
+        event=AstrMessageEvent
 
         if self.config.get('broadcast_send_market', True):
             alert_configs = self._get_alert_configs()
