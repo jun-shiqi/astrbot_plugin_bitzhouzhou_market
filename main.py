@@ -146,17 +146,17 @@ class BitZhouZhouMarket(Star):
             if not symbols:
                 symbols = ['BTC-USDT']
             market_analysis = await self.analyzer.analyze_market(symbols)
-            await send_message(self, event,targets, market_analysis)
+            await send_message(self, event:AstrMessageEvent,targets, market_analysis)
 
         if self.config.get('broadcast_send_news', True):
             news = await self.rss_service.get_news()
             news_summary = await self.analyzer.generate_news_summary(news)
-            await send_message(self, event,targets, news_summary)
+            await send_message(self, event:AstrMessageEvent,targets, news_summary)
 
         if self.config.get('broadcast_send_flash', True):
             flash = await self.rss_service.get_flash()
             flash_summary = await self.analyzer.generate_flash_summary(flash)
-            await send_message(self, event,targets, flash_summary)
+            await send_message(self, event:AstrMessageEvent,targets, flash_summary)
 
     async def terminate(self):
         """插件被卸载/停用时调用"""
